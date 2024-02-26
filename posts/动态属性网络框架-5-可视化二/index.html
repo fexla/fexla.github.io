@@ -1,0 +1,157 @@
+<!DOCTYPE html><html lang="zh-CN" mode="dark" ><head> <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script> <script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: { skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'], inlineMath: [['$','$']] } }); </script><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="day-prompt" content="天前"><meta name="hour-prompt" content="小时前"><meta name="minute-prompt" content="分钟前"><meta name="justnow-prompt" content="刚刚"><meta name="generator" content="Jekyll v4.3.3" /><meta property="og:title" content="动态属性网络框架-5 可视化（二）" /><meta name="author" content="fexla" /><meta property="og:locale" content="zh_CN" /><meta name="description" content="基本思路" /><meta property="og:description" content="基本思路" /><link rel="canonical" href="https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/" /><meta property="og:url" content="https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/" /><meta property="og:site_name" content="FEXLA" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2021-11-23T00:00:00+08:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="动态属性网络框架-5 可视化（二）" /><meta name="twitter:site" content="@twitter_username" /><meta name="twitter:creator" content="@fexla" /><meta name="google-site-verification" content="google_meta_tag_verification" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"fexla"},"dateModified":"2021-11-23T00:00:00+08:00","datePublished":"2021-11-23T00:00:00+08:00","description":"基本思路","headline":"动态属性网络框架-5 可视化（二）","mainEntityOfPage":{"@type":"WebPage","@id":"https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/"},"url":"https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/"}</script><title>动态属性网络框架-5 可视化（二） | FEXLA</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="FEXLA"><meta name="application-name" content="FEXLA"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end" lang="zh-CN"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="/assets/img/favicons/favicon.ico" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">FEXLA</a></div><div class="site-subtitle font-italic">FEXLA的个人博客</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>首页</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>分类</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>标签</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>归档</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>关于</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/fexla" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['2098897033','qq.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> 首页 </a> </span> <span>动态属性网络框架-5 可视化（二）</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> 文章</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="搜索..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >取消</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>动态属性网络框架-5 可视化（二）</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="semi-bold"> fexla </span> 发表于 <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="2021-11-23, 00:00 +0800" >2021-11-23<i class="unloaded">2021-11-23T00:00:00+08:00</i> </span></div><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="715 字">3 分钟 阅读</span></div></div><div class="post-content"><h2 id="基本思路">基本思路</h2><p>　　可视化的第二步，可视化编辑属性网络模型。先搭建窗口的基本形状</p><h2 id="搭建窗口的基本形状">搭建窗口的基本形状</h2><p>　　新建两个类。AttrNetWindow继承EditorWindow、ModelGraph继承GraphView，分别是编辑属性网络模型的窗口和模型的GraphView控件。</p><p>　　ModelGraph初始化。</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="k">public</span> <span class="nf">ModelGraph</span> <span class="p">(){</span>
+   <span class="n">style</span><span class="p">.</span><span class="n">minHeight</span> <span class="p">=</span> <span class="m">400</span><span class="p">;</span>
+   <span class="n">style</span><span class="p">.</span><span class="n">minWidth</span> <span class="p">=</span> <span class="m">400</span><span class="p">;</span>
+   <span class="c1">//拖拽背景</span>
+   <span class="k">this</span><span class="p">.</span><span class="nf">AddManipulator</span> <span class="p">(</span><span class="k">new</span> <span class="nf">ContentDragger</span> <span class="p">());</span>
+   <span class="c1">//拖拽节点</span>
+   <span class="k">this</span><span class="p">.</span><span class="nf">AddManipulator</span> <span class="p">(</span><span class="k">new</span> <span class="nf">SelectionDragger</span> <span class="p">());</span>
+   <span class="c1">//拖拽选择</span>
+   <span class="k">this</span><span class="p">.</span><span class="nf">AddManipulator</span> <span class="p">(</span><span class="k">new</span> <span class="nf">RectangleSelector</span> <span class="p">());</span>
+   <span class="k">this</span><span class="p">.</span><span class="nf">AddManipulator</span> <span class="p">(</span><span class="k">new</span> <span class="nf">FreehandSelector</span> <span class="p">());</span>
+   
+   <span class="c1">//背景</span>
+   <span class="kt">var</span> <span class="n">grid</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">GridBackground</span> <span class="p">();</span>
+   <span class="nf">Insert</span> <span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">grid</span><span class="p">);</span>
+   <span class="n">grid</span><span class="p">.</span><span class="nf">StretchToParentSize</span> <span class="p">();</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>　　AttrNetWindow中有一个节点网络的画布，左上角有一块方形的属性栏。AttrNetWindow初始化：</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">CreateGUI</span> <span class="p">(){</span>
+   <span class="c1">//基本属性设置</span>
+   <span class="n">name</span> <span class="p">=</span> <span class="s">"Model Net Editor"</span><span class="p">;</span>
+   <span class="n">minSize</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Vector2</span> <span class="p">(</span><span class="m">900</span><span class="p">,</span> <span class="m">600</span><span class="p">);</span>
+   
+   <span class="c1">//创建GraphView</span>
+   <span class="n">ModelGraph</span> <span class="n">modelGraph</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ModelGraph</span> <span class="p">();</span>
+   <span class="n">modelGraph</span><span class="p">.</span><span class="nf">StretchToParentSize</span> <span class="p">();</span>
+   <span class="n">modelGraph</span><span class="p">.</span><span class="n">styleSheets</span><span class="p">.</span><span class="nf">Add</span> <span class="p">(</span><span class="n">sheet</span><span class="p">);</span>
+   <span class="n">rootVisualElement</span><span class="p">.</span><span class="nf">Add</span> <span class="p">(</span><span class="n">modelGraph</span><span class="p">);</span>
+
+   <span class="c1">//创建属性栏</span>
+   <span class="n">_toolBox</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Box</span><span class="p">{</span> <span class="n">style</span> <span class="p">={</span> <span class="n">maxWidth</span> <span class="p">=</span> <span class="m">275</span><span class="p">,</span> <span class="n">marginLeft</span> <span class="p">=</span> <span class="m">23</span><span class="p">,</span> <span class="n">marginTop</span> <span class="p">=</span> <span class="m">23</span> <span class="p">}</span> <span class="p">};</span>
+
+
+   <span class="n">rootVisualElement</span><span class="p">.</span><span class="nf">Add</span> <span class="p">(</span><span class="n">_toolBox</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>　　</p><p>　　动态属性网络模型是若干个动态属性作为节点形成网络，动态属性都有属性类型且互不相同。所以在模型编辑界面应该显示出一个属性类型的列表，双击其中的属性类型条目可以创建节点。</p><p>　　导入字典资源</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="n">_dictionary</span> <span class="p">=</span> <span class="n">AttrTypeDictionary</span><span class="p">.</span><span class="n">Dictionary</span><span class="p">;</span>
+</pre></table></code></div></div><p>　　创建列表空间并和字典资源链接：</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="n">Action</span><span class="p">&lt;</span><span class="n">VisualElement</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">bind</span> <span class="p">=</span> <span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">((</span><span class="n">Label</span><span class="p">)</span><span class="n">element</span><span class="p">).</span><span class="n">text</span> <span class="p">=</span> <span class="n">_dictionary</span><span class="p">.</span><span class="n">Types</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">KeyName</span><span class="p">;</span>
+<span class="n">listView</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">ListView</span> <span class="p">(</span><span class="n">_dictionary</span><span class="p">.</span><span class="n">Types</span><span class="p">,</span> <span class="m">24</span><span class="p">,</span> <span class="n">CreateListLabel</span><span class="p">,</span> <span class="n">bind</span><span class="p">);</span>
+<span class="n">listView</span><span class="p">.</span><span class="n">selectionType</span> <span class="p">=</span> <span class="n">SelectionType</span><span class="p">.</span><span class="n">Multiple</span><span class="p">;</span>
+<span class="n">listView</span><span class="p">.</span><span class="n">name</span> <span class="p">=</span> <span class="s">"属性类型列表"</span><span class="p">;</span>
+<span class="n">listView</span><span class="p">.</span><span class="n">showBorder</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span>
+</pre></table></code></div></div><p>　　用TabbedView包装List并添加到根元素上：</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="n">TabbedView</span> <span class="n">tabbedView</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">TabbedView</span> <span class="p">();</span>
+<span class="n">tabbedView</span><span class="p">.</span><span class="nf">AddTab</span> <span class="p">(</span><span class="k">new</span> <span class="nf">TabButton</span> <span class="p">(</span><span class="s">"属性类型列表"</span><span class="p">,</span> <span class="n">listView</span><span class="p">),</span> <span class="k">true</span><span class="p">);</span>
+<span class="n">_toolBox</span><span class="p">.</span><span class="nf">Add</span> <span class="p">(</span><span class="n">tabbedView</span><span class="p">);</span>
+</pre></table></code></div></div><p>　　如果属性字典改变了窗口内的列表并不会更新，所以要添加一个当窗口得到焦点时更新列表：</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">private</span> <span class="k">void</span> <span class="nf">OnFocus</span> <span class="p">(){</span>
+   <span class="n">listView</span><span class="p">?.</span><span class="nf">Refresh</span> <span class="p">();</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>　　表列里的Label都要添加监听，如果双击则创建节点。先写一个CreateListLabel方法，创建节点的逻辑先留着之后写：</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="k">private</span> <span class="n">Label</span> <span class="nf">CreateListLabel</span> <span class="p">(){</span>
+   <span class="n">Label</span> <span class="n">label</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">Label</span> <span class="p">();</span>
+   <span class="n">label</span><span class="p">.</span><span class="nf">AddToClassList</span> <span class="p">(</span><span class="s">"ListLabel"</span><span class="p">);</span>
+   <span class="n">label</span><span class="p">.</span><span class="n">RegisterCallback</span><span class="p">&lt;</span><span class="n">ClickEvent</span><span class="p">&gt;</span> <span class="p">((</span><span class="n">type</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">type</span><span class="p">.</span><span class="n">clickCount</span> <span class="p">==</span> <span class="m">2</span><span class="p">){</span>
+         <span class="n">Debug</span><span class="p">.</span><span class="nf">Log</span> <span class="p">(</span><span class="n">label</span><span class="p">.</span><span class="n">text</span> <span class="p">+</span> <span class="s">"双击"</span> <span class="p">+</span> <span class="n">_dictionary</span><span class="p">.</span><span class="n">Types</span><span class="p">.</span><span class="n">Count</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">});</span>
+   <span class="k">return</span> <span class="n">label</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p>　　最后uss文件写上样式，美化一下：</p><pre><code class="language-uss">GridBackground {
+    --grid-background-color: rgb(1, 6, 28);
+    --line-color: rgba(193, 196, 192, 0.1);
+    --thick-line-color: rgba(193, 196, 192, 0.1);
+    --spacing: 10;
+}
+
+Box {
+    background-color: rgba(49, 49, 49, 0.8);
+    border-radius: 5px;
+    height: 300px;
+}
+
+ListView {
+    margin: 2px;
+    min-height: 70px;
+    height: 65px;
+}
+
+Label {
+    -unity-font-style: normal;
+    color: rgb(241, 241, 241);
+    font-size: 17px;
+    margin: 6px;
+}
+
+.ListLabel {
+    font-size: 14px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+TabbedView {
+    margin: 6px;
+    width: 100%;
+    height: 160px;
+    background-color: rgba(40, 40, 42, 0.9);
+}
+
+TabButton Label {
+    font-size: 14px;
+}
+</code></pre><p>　　加载样式表：</p><div class="language-c# highlighter-rouge"><div class="code-header"> <span text-data=" C# "><i class="fa-fw fas fa-code small"></i></span> <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="n">sheet</span> <span class="p">=</span> <span class="nf">LoadStyle</span> <span class="p">();</span>
+<span class="n">rootVisualElement</span><span class="p">.</span><span class="n">styleSheets</span><span class="p">.</span><span class="nf">Add</span> <span class="p">(</span><span class="n">sheet</span><span class="p">);</span>
+</pre></table></code></div></div><p>　　最终效果</p><p><img data-proofer-ignore data-src="https://z3.ax1x.com/2021/11/23/oCE6l8.png" alt="oCE6l8.png" /></p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/%E6%B8%B8%E6%88%8F/'>游戏</a>, <a href='/categories/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/'>框架设计</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/%E6%B8%B8%E6%88%8F/" class="post-tag no-text-decoration" >游戏</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" class="post-tag no-text-decoration" >游戏开发</a> <a href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/" class="post-tag no-text-decoration" >框架设计</a> <a href="/tags/%E5%8A%A8%E6%80%81%E6%95%B0%E5%80%BC%E7%BD%91%E7%BB%9C/" class="post-tag no-text-decoration" >动态数值网络</a> <a href="/tags/%E6%95%B0%E5%80%BC/" class="post-tag no-text-decoration" >数值</a> <a href="/tags/%E7%BC%96%E7%A8%8B/" class="post-tag no-text-decoration" >编程</a> <a href="/tags/ui/" class="post-tag no-text-decoration" >UI</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> 本文由作者按照 <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> 进行授权</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">分享</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=动态属性网络框架-5 可视化（二） - FEXLA&url=https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=动态属性网络框架-5 可视化（二） - FEXLA&u=https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=动态属性网络框架-5 可视化（二） - FEXLA&url=https://fexla.github.io/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-5-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%BA%8C/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="分享链接" title-succeed="链接已复制！"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>最近更新</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/C++%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E8%AF%AD%E8%A8%80-%E7%AC%94%E8%AE%B0-%E7%AC%AC3%E7%AB%A0-C++%E6%A6%82%E8%A7%88-%E6%8A%BD%E8%B1%A1%E6%9C%BA%E5%88%B6/">《C++程序设计语言》笔记 第3章 C++概览：抽象机制</a><li><a href="/posts/%E7%AE%97%E6%B3%95%E6%97%A5%E5%AF%84-2022-08-04/">算法日寄[2022-08-04]</a><li><a href="/posts/%E7%AE%97%E6%B3%95%E6%97%A5%E5%AF%84-2022-07-21/">算法日寄[2022-07-21]</a><li><a href="/posts/%E7%AE%97%E6%B3%95%E6%97%A5%E5%AF%84-2022-07-19/">算法日寄[2022-07-19]</a><li><a href="/posts/%E7%AE%97%E6%B3%95%E6%97%A5%E5%AF%84-2022-07-18/">算法日寄[2022-07-18]</a></ul></div><div id="access-tags"> <span>热门标签</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a> <a class="post-tag" href="/tags/%E7%AE%97%E6%B3%95/">算法</a> <a class="post-tag" href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a> <a class="post-tag" href="/tags/%E5%8A%A8%E6%80%81%E6%95%B0%E5%80%BC%E7%BD%91%E7%BB%9C/">动态数值网络</a> <a class="post-tag" href="/tags/%E6%95%B0%E5%80%BC/">数值</a> <a class="post-tag" href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/">框架设计</a> <a class="post-tag" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a> <a class="post-tag" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/ui/">UI</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">文章内容</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>相关文章</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-4-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%80/"><div class="card-body"> <span class="timeago small" >2021-11-22<i class="unloaded">2021-11-22T00:00:00+08:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>动态属性网络框架-4 可视化（一）</h3><div class="text-muted small"><p> 基本思路 　　需求是可视化地使用动态属性网络框架。首先需要实现可视化地编辑属性类型字典。要做的包括持久化字典类，字典编辑窗口，属性类型信息的编辑UI。 持久化字典类 　　类型字典类继承ScriptableObject，让它可以被unity持久化。在字典类中添加以下代码（dictionary是公共静态的字典变量）： public static AttrTypeDictionary Di...</p></div></div></a></div><div class="card"> <a href="/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-1-%E5%89%8D%E8%A8%80/"><div class="card-body"> <span class="timeago small" >2021-11-11<i class="unloaded">2021-11-11T00:00:00+08:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>动态属性网络框架-1 前言</h3><div class="text-muted small"><p> 简介 　　我最近设计开发了一个游戏数值（程序，）框架，我将它命名为动态属性网络（节点是动态属性的动态网络），其作用是用一个可视化的、动态的数值模型，维护多级属性的所有属性之间的运算关系，和维护数值载体身上的一系列数值。它适用于开发数值属性非常多的游戏，如太吾绘卷、鬼谷八荒、群星。 　　我的基本想法是：以太吾绘卷为例（觉得文字太繁琐可以直接看我的示意图），太吾绘卷有非常多的属性种类，属性之...</p></div></div></a></div><div class="card"> <a href="/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-2-%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"><div class="card-body"> <span class="timeago small" >2021-11-13<i class="unloaded">2021-11-13T00:00:00+08:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>动态属性网络框架-2 基本功能实现</h3><div class="text-muted small"><p> 动态属性网络模型 属性模型 　　动态属性网络模型的作用是维护各个属性之间的运算关系，并提供一个从一个从数据集得到特定属性的值的接口。 　　各个属性之间的运算关系是一个图，或者说一个网络。我使用一个结构体ModelNode储存一个节点的信息，用结构体动态数组来保存表示各个属性之间的运算关系。 ​ 一个ModelNode包含：属性类型，三个动态数组分别储存这个属性计算时涉及哪些属性（储...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/%E5%8A%A8%E6%80%81%E5%B1%9E%E6%80%A7%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6-4-%E5%8F%AF%E8%A7%86%E5%8C%96%E4%B8%80/" class="btn btn-outline-primary" prompt="上一篇"><p>动态属性网络框架-4 可视化（一）</p></a> <a href="/posts/%E5%9F%BA%E4%BA%8Ejavafx%E7%9A%84%E7%BC%96%E8%A7%A3%E7%A0%81%E5%99%A8-%E5%AD%A6%E6%A0%A1%E4%BD%9C%E4%B8%9A/" class="btn btn-outline-primary" prompt="下一篇"><p>FexCodec-基于JavaFX和哈夫曼算法的解压缩编解码器-学校作业</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2024 <a href="https://github.com/fexla">fexla</a>. <span data-toggle="tooltip" data-placement="top" title="除非另有说明，本网站上的博客文章均由作者按照知识共享署名 4.0 国际 (CC BY 4.0) 许可协议进行授权。">保留部分权利。</span></p></div><div class="footer-right"><p class="mb-0"> 本站由 <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> 生成，采用 <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> 主题。</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">热门标签</h4><a class="post-tag" href="/tags/%E7%BC%96%E7%A8%8B/">编程</a> <a class="post-tag" href="/tags/%E7%AE%97%E6%B3%95/">算法</a> <a class="post-tag" href="/tags/%E6%B8%B8%E6%88%8F/">游戏</a> <a class="post-tag" href="/tags/%E5%8A%A8%E6%80%81%E6%95%B0%E5%80%BC%E7%BD%91%E7%BB%9C/">动态数值网络</a> <a class="post-tag" href="/tags/%E6%95%B0%E5%80%BC/">数值</a> <a class="post-tag" href="/tags/%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1/">框架设计</a> <a class="post-tag" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/">游戏开发</a> <a class="post-tag" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/ui/">UI</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">搜索结果为空</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script>
